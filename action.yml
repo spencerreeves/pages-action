@@ -19,6 +19,9 @@ inputs:
   gitHubToken:
     description: "GitHub Token"
     required: true
+  environment:
+    description: "Cloudflare environment"
+    required: false
 runs:
   using: "node16"
   main: "index.js"

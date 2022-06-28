@@ -32,6 +32,7 @@ GitHub Action for creating Cloudflare Pages deployments, using the new [Direct U
              projectName: YOUR_PROJECT_NAME
              directory: YOUR_ASSET_DIRECTORY
              gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+             environment: production
    ```
 
 1. Replace `YOUR_ACCOUNT_ID`, `YOUR_PROJECT_NAME` and `YOUR_ASSET_DIRECTORY` with the appropriate values to your Pages project.
@@ -52,3 +53,7 @@ To generate an API token:
 7. Select Continue to summary > Create Token.
 
 More information can be found on [our guide for making Direct Upload deployments with continous integration](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/#use-github-actions).
+
+### Set environment
+Optionally, you can publish to a specific environment. By default, the environment will be set to `production` if run on
+the main branch of the repo; otherwise it is set to `preview`. 
