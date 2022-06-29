@@ -65,7 +65,7 @@ try {
       $ export CLOUDFLARE_ACCOUNT_ID="${accountId}"
     }
   
-    $$ npx wrangler@2 pages publish "${directory}" --project-name="${projectName}" --binding ENV_NAME="${environment}"
+    $$ npx wrangler@2 pages publish "${directory}" --project-name="${projectName}" --branch "${environment}"
     `;
 
     const response = await fetch(
