@@ -65,7 +65,7 @@ try {
       $ export CLOUDFLARE_ACCOUNT_ID="${accountId}"
     }
   
-    $$ npx wrangler@2 pages publish "${directory}" --project-name="${projectName}" --branch "${environment}"
+    $$ npx wrangler@2 pages publish "${directory}" --project-name="${projectName}"
     `;
 
     const response = await fetch(
@@ -130,6 +130,9 @@ try {
 
     const url = new URL(pagesDeployment.url);
     const productionEnvironment = pagesDeployment.environment === "production";
+    // const environmentName = productionEnvironment
+    //   ? "Production"
+    //   : `Preview (${url.host.split(".")[0]})`;
     let environmentName = environment
     if (!environment) {
       environmentName = productionEnvironment

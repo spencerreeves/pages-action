@@ -16124,7 +16124,7 @@ try {
       $ export CLOUDFLARE_ACCOUNT_ID="${accountId}"
     }
   
-    $$ npx wrangler@2 pages publish "${directory}" --project-name="${projectName}" --branch "${environment}"
+    $$ npx wrangler@2 pages publish "${directory}" --project-name="${projectName}"
     `;
     const response = await (0, import_undici.fetch)(`https://api.cloudflare.com/client/v4/accounts/${accountId}/pages/projects/${projectName}/deployments`, { headers: { Authorization: `Bearer ${apiToken}` } });
     const {
