@@ -53,7 +53,7 @@ try {
   const projectName = getInput("projectName", { required: true });
   const directory = getInput("directory", { required: true });
   const gitHubToken = getInput("gitHubToken", { required: true });
-  const environment = getInput("environment", { required: false });
+  const branch = getInput("branch", { required: false });
 
   const octokit = getOctokit(gitHubToken);
 
@@ -65,7 +65,7 @@ try {
       $ export CLOUDFLARE_ACCOUNT_ID="${accountId}"
     }
   
-    $$ npx wrangler@2 pages publish "${directory}" --project-name="${projectName}"
+    $$ npx wrangler@2 pages publish "${directory}" --project-name="${projectName} --branch=${branch}"
     `;
 
     const response = await fetch(
@@ -130,15 +130,9 @@ try {
 
     const url = new URL(pagesDeployment.url);
     const productionEnvironment = pagesDeployment.environment === "production";
-    // const environmentName = productionEnvironment
-    //   ? "Production"
-    //   : `Preview (${url.host.split(".")[0]})`;
-    let environmentName = environment
-    if (!environment) {
-      environmentName = productionEnvironment
-        ? "Production"
-        : `Preview (${url.host.split(".")[0]})`;
-    }
+    const environmentName = productionEnvironment
+      ? "Production"
+      : `Preview (${url.host.split(".")[0]})`;
 
     if (gitHubDeployment) {
       await createGitHubDeploymentStatus({

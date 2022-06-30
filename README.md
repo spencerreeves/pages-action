@@ -32,7 +32,6 @@ GitHub Action for creating Cloudflare Pages deployments, using the new [Direct U
              projectName: YOUR_PROJECT_NAME
              directory: YOUR_ASSET_DIRECTORY
              gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-             environment: production
    ```
 
 1. Replace `YOUR_ACCOUNT_ID`, `YOUR_PROJECT_NAME` and `YOUR_ASSET_DIRECTORY` with the appropriate values to your Pages project.
@@ -54,6 +53,9 @@ To generate an API token:
 
 More information can be found on [our guide for making Direct Upload deployments with continous integration](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/#use-github-actions).
 
-### Set environment
-Optionally, you can publish to a specific environment. By default, the environment will be set to `production` if run on
-the main branch of the repo; otherwise it is set to `preview`. 
+### Specifying a branch
+The branch name is used by Cloudflare Pages to determine if the deployment is production or preview. Read more about
+[git branch build controls](https://developers.cloudflare.com/pages/platform/branch-build-controls/#branch-build-controls).
+
+If you are in a Git workspace, Wrangler will automatically pull the branch information for you. You can override this
+manually by adding the argument `branch: YOUR_BRANCH_NAME`.
